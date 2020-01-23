@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/profilo', 'ProfileController@getProfili');
+Route::get('/profilo/{id}', 'ProfileController@getProfilo');
+Route::get('/search', 'SearchController@filter');
+Route::get('/', 'HomeController@index')->name('home');
+
+Auth::routes();
