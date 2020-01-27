@@ -14,9 +14,9 @@ class ProfileController extends Controller
         }
     }
     public function getProfilo(profilo $profilo, $id){
-        $result = $profilo::where('id_user',$id);
+        $result=$profilo::where('user_id',$id);
 
-        return json_encode($profilo->first());
+        return json_encode($result->get());
       
         
     }
