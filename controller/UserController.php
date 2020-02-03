@@ -32,16 +32,27 @@
         }
 
         public function registeruser(){
-            $name=$_POST["name"];
-            $l_name=$_POST["l_name"];
-            $birthdate=$_POST["birthdate"];
             $username=$_POST["username"];
+            $email=$_POST["email"];
             $password=$_POST["password"];
             $password2=$_POST["password2"];
+            $f_name=$_POST["f_name"];
+            $l_name=$_POST["l_name"];
+            $tel=$_POST["tel"];
+            $description=$_POST["description"];
+            $freelancer=$_POST["freelancer"];
+            $state=$_POST["state"];
+            $address=$_POST["address"];
+            $province=$_POST["province"];
+            $city=$_POST["city"];
+            $cap=$_POST["cap"];
+            $birthdate=$_POST["birthdate"];
+           
+     
             if($password==$password2){
                 $password=password_hash($_POST["password"], PASSWORD_DEFAULT );
                 $role_id=3;
-                $result=$this->userDBO->insertUser($name,$l_name,$birthdate,$username,$password,$role_id);
+                $result=$this->userDBO->insertUser($username,$email,$password,$f_name,$l_name,$tel,$description,$freelancer,$state,$address);
                 $result>=1 ?  $success=true : $success=false;
                 if($success){
                     return json_encode(array("result"=>"1201", "message"=>"Registration completed!"));
