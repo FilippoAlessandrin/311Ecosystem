@@ -25,11 +25,15 @@ class DBO
     }
 }
 
-class User extends DBO
+class Project extends DBO
 {
     public function __construct()
     {
         parent::__construct("project");
+    }
+
+    public function insert(){
+        /*chiamate mysql con pdo*/
     }
 }
 
