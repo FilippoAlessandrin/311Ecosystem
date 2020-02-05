@@ -9,7 +9,7 @@ class ProjectController
     public function insert(){
         
         if(isset($_SESSION["permission"])){
-            if($_SESSION["permission"]==1){
+            if($_SESSION["permission"] < 3){
                 $title=$_POST["title"];
                 $descr=$_POST["descr"];
                 $sector=$_POST["sector"];
