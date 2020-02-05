@@ -28,12 +28,20 @@ class DBO {
 
 class User extends DBO {
 		public function __construct(){
-			parent::__construct("user");
+			parent::__construct("users");
 		}
-		public function insertUser($name,$l_name,$birthdate,$username,$password,$role_id){
-			$birthdate=="" ? $birthdate=Null : $birthdate;
-			$stmt = $this->db->prepare("insert into " .$this->table. "(name,l_name,birthdate,username,password,role_id) values(?,?,?,?,?,?)");
-			$stmt->execute([$name,$l_name,$birthdate,$username,$password,$role_id]);
+		public function register($username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap){
+			//var_dump([$username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap,]);
+	
+			$stmt = $this->db->prepare("insert into " .$this->table. "(username,email,password,first_name,last_name,birthdate,profession,tel,description,freelancer,state,address,province,city,cap) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$stmt->execute([$username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap]);
+		
+			return $stmt->rowCount();
+		}
+		public function insert($username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap,$role_id){
+			$stmt = $this->db->prepare("insert into " .$this->table. "(username,email,password,first_name,last_name,birthdate,profession,tel,description,freelancer,state,address,province,city,cap,role_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$stmt->execute([$username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap,$role_id]);
+		
 			return $stmt->rowCount();
 		}
 		public function selectUser($username){
@@ -76,36 +84,4 @@ class User extends DBO {
 		
 		
 	}
-		class Color extends DBO {
-		public function __construct(){
-			parent::__construct("color");
-		}
-		public function createColor($name,$hex,$creator_id){
-			$stmt = $this->db->prepare("insert into " .$this->table. "(name,hex,creator_id) values(?,?,?)");
-			$stmt->execute([$name,$hex,$creator_id]);
-			return $stmt->rowCount();
-		}
-		public function selectColor($colorid){
-			$stmt = $this->db->prepare("select * from" .$this->table. " where id_color=$colorid");
-			$stmt->execute();
-			return $stmt->fetch(PDO::FETCH_ASSOC);
-		}
-		public function deleteColor($color_id){
-			$stmt = $this->db->prepare("DELETE FROM ".$this->table. " WHERE ");
-			$stmt->execute([$name,$hex,$creator_id]);
-			return $stmt->rowCount();
-			
-		}
-		/*public function modifyColor($color_id,$name,$hex){
-			$result=$this->selectColor($color_id);
-			session_start();
-			if($result["creator_id"]==$_SESSION["userid"])
-
-			$stmt = $this->db->prepare("insert into " .$this->table. "(name,hex,creator_id) values(?,?,?)");
-			$stmt->execute([$name,$hex,$creator_id]);
-			return $stmt->rowCount();
-		}*/
-		
-		
-    }
-    ?>
+?>
