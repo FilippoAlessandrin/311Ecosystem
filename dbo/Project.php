@@ -32,8 +32,14 @@ class Project extends DBO
         parent::__construct("project");
     }
 
-    public function insert(){
+    public function insert($title,$descr,$sector,$start_date,$user_id){
         /*chiamate mysql con pdo*/
+       	$start_date=="" ? $start_date=Null : $start_date;
+			$stmt = $this->db->prepare("insert into " .$this->table. "(title,descr,sector,start_date,user_id) values(?,?,?,?,?,?)");
+			$stmt->execute([$title,$descr,$sector,$start_date,$user_id]);
+			return $stmt->rowCount();
+		
+		
     }
 }
 
