@@ -3,5 +3,5 @@
 
       $ProjectController =new ProjectController();
    
-       echo $ProjectController->insert();
+      
 ?>
