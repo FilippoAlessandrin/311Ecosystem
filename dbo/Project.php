@@ -32,17 +32,16 @@ class Project extends DBO
         parent::__construct("project");
     }
 
-    public function insert($title,$descr,$sector,$start_date,$user_id){
+    public function insert($title, $descr, $sector, $start_date, $user_id){
         /*chiamate mysql con pdo*/
-       	$start_date=="" ? $start_date=Null : $start_date;
-			$stmt = $this->db->prepare("insert into " .$this->table. "(title,descr,sector,start_date,user_id) values(?,?,?,?,?,?)");
-			$stmt->execute([$title,$descr,$sector,$start_date,$user_id]);
-			return $stmt->rowCount();
-		
-		
+        $start_date == "" ? $start_date = Null : $start_date;
+        $stmt = $this->db->prepare("insert into " . $this->table . "(title,descr,sector,start_date,user_id) values(?,?,?,?,?,?)");
+        $stmt->execute([$title, $descr, $sector, $start_date, $user_id]);
+        return $stmt->rowCount();
+    }
+    public function register($title, $descr, $sector, $start_date, $user_id){
+        //var_dump([$username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap,]);
+        $stmt = $this->db->prepare("insert into " .$this->table. "(title,descr,sector,start_date,user_id) values(?,?,?,?,?,?)");
+        $stmt->execute([$title, $descr, $sector, $start_date, $user_id]);
     }
 }
-
-
-
-?>
