@@ -1,8 +1,8 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT']."/311Ecosystem/dbo/User.php";
+    include_once $_SERVER['DOCUMENT_ROOT']."/311Ecosystem/dbo/Aule.php";
     class AuleController{
         public function __construct() {
-            $this->userDBO=new User();
+            $this->AuleDBO=new Aule();
 
         }
 
@@ -31,20 +31,24 @@
                         $datetime=new DateTime();
                         $start_datetime=$datetime->createFromFormat('d/m/Y H:i',  $start_date);
                         $end_datetime = $datetime->createFromFormat('d/m/Y H:i',  $end_date);
+                        
+                        $start_datetimestring = $start_datetime->format('Y/m/d H:i:s');
+                        $end_datetimestring = $end_datetime->format('Y-m-d H:i:s');
+
+                        
                         $diff = $end_datetime->diff($start_datetime);
                         $tot_ore=$diff->format("%H:%i");
-
+                        $_SESSION["permission"]=2;
                         $active = $_SESSION["permission"]<=2 ? 1 : 0;
-                        $result=$this->userDBO->insert($username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap,$role_id);
+
+                        $result=$this->AuleDBO->insert($title,$start_datetimestring,$end_datetimestring,$description,$isPublic,$tot_ore,$active);
                         $result>=1 ?  $success=true : $success=false;
                         if($success){
                             return json_encode(array("result"=>"1201", "message"=>"insert completed!"));
                         }else{
-                                return json_encode(array("result"=>"1500", "message"=>"Insert Error"));
-                            }
-                        }else{
-                            return json_encode(array("result"=>"1400", "message"=>"Wrong password"));
+                            return json_encode(array("result"=>"1500", "message"=>"Insert Error"));
                         }
+
                 
                         
                     }else{
