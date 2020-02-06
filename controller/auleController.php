@@ -1,6 +1,6 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT']."/311Ecosystem/dbo/User.php";
-    class UserController{
+    class AuleController{
         public function __construct() {
             $this->userDBO=new User();
 
@@ -10,44 +10,36 @@
             return json_encode($this->userDBO->selectAll());
         }
         public function insert(){
-            if(isset($_SESSION["permission"])){
-                if(!$_SESSION["permission"]==1){
+            if(!isset($_SESSION["permission"])){
+                if(/*$_SESSION["permission"]>=1*/true){
                     if(
-                        isset($_POST["username"]) 
-                        && isset($_POST["email"]) 
-                        && isset($_POST["password"]) 
-                        && isset($_POST["password2"]) 
-                        && isset($_POST["f_name"])
-                        && isset($_POST["l_name"])
+                        isset($_POST["title"]) 
+                        && isset($_POST["start_date"]) 
+                        && isset($_POST["end_date"]) 
                     ){
     
-                        $username=$_POST["username"];
-                        $email=$_POST["email"];
-                        $password=$_POST["password"];
-                        $password2=$_POST["password2"];
-                        $f_name=$_POST["f_name"];
-                        $l_name=$_POST["l_name"];
+                        $title=$_POST["title"];
+                        $start_date=$_POST["start_date"];
+                        $end_date=$_POST["end_date"];
 
+                     
+                       
                         
-                        $professione = isset($_POST['profession']) ? $_POST['profession'] : null;
-                        $tel = isset($_POST['tel']) ? $_POST['tel'] : null;
                         $description = isset($_POST['description']) ? $_POST['description'] : null;
-                        $freelancer = isset($_POST['freelancer']) ? $_POST['freelancer'] : 0;
-                        $state = isset($_POST['state']) ? $_POST['state'] : null;
-                        $address = isset($_POST['address']) ? $_POST['address'] : null;
-                        $province = isset($_POST['province']) ? $_POST['province'] : null;
-                        $city = isset($_POST['city']) ? $_POST['city'] : null;
-                        $cap = isset($_POST['cap']) ? $_POST['cap'] : null;
-                        $birthdate = isset($_POST['birthdate']) ? $_POST['birthdate'] : null;
-                        $role_id = isset($_POST['role_id']) ? $_POST['role_id'] : 3;
-                        if($password==$password2){
-                            $password=password_hash($_POST["password"], PASSWORD_DEFAULT );
-                            $role_id=3;
-                            $result=$this->userDBO->insert($username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap,$role_id);
-                            $result>=1 ?  $success=true : $success=false;
-                            if($success){
-                                return json_encode(array("result"=>"1201", "message"=>"insert completed!"));
-                            }else{
+                        $isPublic = isset($_POST['isPublic']) ? $_POST['isPublic'] : 0;
+
+                        $datetime=new DateTime();
+                        $start_datetime=$datetime->createFromFormat('d/m/Y H:i',  $start_date);
+                        $end_datetime = $datetime->createFromFormat('d/m/Y H:i',  $end_date);
+                        $diff = $end_datetime->diff($start_datetime);
+                        $tot_ore=$diff->format("%H:%i");
+
+                        $active = $_SESSION["permission"]<=2 ? 1 : 0;
+                        $result=$this->userDBO->insert($username,$email,$password,$f_name,$l_name,$birthdate,$professione,$tel,$description,$freelancer,$state,$address,$province,$city,$cap,$role_id);
+                        $result>=1 ?  $success=true : $success=false;
+                        if($success){
+                            return json_encode(array("result"=>"1201", "message"=>"insert completed!"));
+                        }else{
                                 return json_encode(array("result"=>"1500", "message"=>"Insert Error"));
                             }
                         }else{
