@@ -41,6 +41,31 @@ class Aule extends DBO {
 			$stmt->execute();
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 		}
+		public function select($eventid){
+			$stmt = $this->db->prepare("select * from ".$this->table." WHERE id='$eventid'");
+			$stmt->execute();
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+		public function toggle($eventid){
+			$stmt = $this->db->prepare("select * from ".$this->table." WHERE id='$eventid'");
+			$stmt->execute();
+			$result=$stmt->fetch(PDO::FETCH_ASSOC);
+			
+			
+			
+	
+			$toggled=$result['active']==1 ? 0 : 1;
+			$sql = "UPDATE ".$this->table." SET active=".$toggled.", WHERE id=".$eventid."";
+
+			// Prepare statement
+			$stmt = $this->db->prepare($sql);
+		
+			// execute the query
+			$stmt->execute();
+			return $stmt->rowCount();
+
+
+		}
 		
 		
 	}
