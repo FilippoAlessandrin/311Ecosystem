@@ -15,19 +15,21 @@
                     if(
                         isset($_POST["title"]) 
                         && isset($_POST["start_date"]) 
-                        && isset($_POST["end_date"]) 
+                        && isset($_POST["end_date"])
+                        && isset($_POST["aulaid"])
+                        && isset($_POST["userid"])
                     ){
-    
+                        $userid=$_POST["userid"];
                         $title=$_POST["title"];
                         $start_date=$_POST["start_date"];
                         $end_date=$_POST["end_date"];
-
+                        $aulaId=$_POST["aulaid"];
                      
                        
                         
                         $description = isset($_POST['description']) ? $_POST['description'] : null;
                         $isPublic = isset($_POST['isPublic']) ? $_POST['isPublic'] : 0;
-
+                       
                         $datetime=new DateTime();
                         $start_datetime=$datetime->createFromFormat('d/m/Y H:i',  $start_date);
                         $end_datetime = $datetime->createFromFormat('d/m/Y H:i',  $end_date);
@@ -38,10 +40,15 @@
                         
                         $diff = $end_datetime->diff($start_datetime);
                         $tot_ore=$diff->format("%H:%i");
-                        $_SESSION["permission"]=2;
+                        $_SESSION["permission"]=2;/*cancellare*/
                         $active = $_SESSION["permission"]<=2 ? 1 : 0;
-
-                        $result=$this->AuleDBO->insert($title,$start_datetimestring,$end_datetimestring,$description,$isPublic,$tot_ore,$active);
+                        $resultconflict=$this->AuleDBO->getEventsBetween($start_datetimestring,$end_datetimestring,$active,$aulaId);
+                        if(!$resultconflict){
+                            $result=$this->AuleDBO->insert($title,$start_datetimestring,$end_datetimestring,$description,$isPublic,$tot_ore,$active,$aulaId,$userid);
+                        }else{
+                            $result=0;
+                        }
+                       
                         $result>=1 ?  $success=true : $success=false;
                         if($success){
                             return json_encode(array("result"=>"1201", "message"=>"insert completed!"));
