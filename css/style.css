@@ -21382,4 +21382,8 @@ form.registration-form fieldset {
   display: none;
 }
 
+form.registration-form input, form.registration-form textarea {
+  border-radius: 0.3rem !important;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

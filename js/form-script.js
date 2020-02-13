@@ -1,5 +1,62 @@
 
 jQuery(document).ready(function() {
+
+	let selectGiorno = $('#registration-giorno');
+	let selectMese = $('#registration-mese');
+	let selectAnno = $('#registration-anno');
+
+	let GetDays = () => {
+		const days = [];
+		let dayMin = 1;
+		const dayMax = 31;
+		while (dayMin <= dayMax) {
+			days.push(dayMin);
+			dayMin++;
+		}
+		return days;
+	};
+
+	let GetMonths = () => {
+		const months = [];
+		let monthsMin = 1;
+		const monthsMax = 12;
+		while (monthsMin <= monthsMax) {
+			months.push(monthsMin);
+			monthsMin++;
+		}
+		return months;
+	};
+
+	let GetYears = () => {
+		const years = [];
+		const yearStart = 1920;
+		let yearNow = new Date().getFullYear();
+		while (yearNow >= yearStart) {
+			years.push(yearNow);
+			yearNow--;
+		}
+		return years;
+	};
+	
+	$.each(GetDays(), function(key, value) {   
+	 selectGiorno.append($("<option></option>")
+				 .attr("value",value)
+				 .text(value)); 
+	});
+	
+	$.each(GetMonths(), function(key, value) {   
+	 selectMese.append($("<option></option>")
+				 .attr("value",value)
+				 .text(value)); 
+	});
+
+	$.each(GetYears(), function(key, value) {   
+		selectAnno.append($("<option></option>")
+				  .attr("value",value)
+				  .text(value)); 
+	});
+
+   
 	
     /* Form */
     $('.registration-form fieldset:first-child').fadeIn('slow');

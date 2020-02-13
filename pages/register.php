@@ -26,46 +26,143 @@
                                 <img src="../images/logo.svg" alt="logo">
                             </div>
 
-                            <h4>Sei nuovo di qui?</h4>
-                            <h6 class="font-weight-light">Registrati in pochi e semplici passi</h6>
-
+                            
                             <form class="pt-3 registration-form">
-
+                                
                             <fieldset>
+                            
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="username"
+                                    <h4>Hey, nuovo di qui? Registrati in pochi step</h4>
+                                    <!-- <h6 class="font-weight-light">1/3</h6> -->
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-username"
                                         placeholder="Nome utente">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="email"
+                                    <input type="email" class="form-control form-control-lg" id="registration-email"
                                         placeholder="E-mail">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" id="password"
+                                    <input type="password" class="form-control form-control-lg" id="registration-password"
                                         placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" id="password-repeat"
+                                    <input type="password" class="form-control form-control-lg" id="registration-password-repeat"
                                         placeholder="Ripeti la password">
                                 </div>
                                 
                                 <div class="text-center mt-4 font-weight-light">
-                                    Hai già un account? <a href="login.html" class="text-primary">Login</a>
+                                    Hai già un account? <a href="login.php" class="text-primary">Login</a>
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-2 offset-10">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-next float-right">Avanti</button>
+                                    </div>
                                 </div>
 
-                                <button type="button" class="btn btn-dark btn-next float-right mt-3">Next</button>
                             </fieldset>
 
                             <fieldset>
-                                <button type="button" class="btn btn-previous">Previous</button>
-                                <button type="button" class="btn btn-next">Next</button>
+
+                                <div class="form-group">
+                                    <h4>Ci siamo quasi! Dicci un po' di te</h4>
+                                    <!-- <h6 class="font-weight-light">2/3</h6> -->
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-nome" placeholder="Nome">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-cognome" placeholder="Cognome">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="registration-data">Data di nascita</label>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <select class="form-control form-control-lg" id="registration-giorno">
+                                                <option value="" disabled selected>Giorno</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <select class="form-control form-control-lg" id="registration-mese">
+                                                <option value="" disabled selected>Mese</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <select class="form-control form-control-lg" id="registration-anno">
+                                                <option value="" disabled selected>Anno</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-previous">Indietro</button>
+                                    </div>
+                                    <div class="col-2 offset-8">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-next float-right">Avanti</button>
+                                    </div>
+                                </div>
+
                             </fieldset>
 
                             <fieldset>
-                                <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="../index.php">SIGN UP</a>
+
+                                <div class="form-group">
+                                    <h4>Di cosa ti occupi?</h4>
+                                    <!-- <h6 class="font-weight-light">3/3</h6> -->
                                 </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-professione" placeholder="Professione">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="tel" class="form-control form-control-lg" id="registration-telefono" placeholder="Numero di cellulare">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-6 my-auto">Sei un Freelancer?</label>
+                                        <div class="col-3 my-auto">
+                                            <div class="form-check form-check-dark">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="freelancerRadios" id="registration-freelancersi" value="freelancersi">
+                                                Si
+                                            </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 my-auto">
+                                            <div class="form-check form-check-dark">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="freelancerRadios" id="registration-freelancerno" value="freelancerno" checked>
+                                                No
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="form-control" id="registration-bio" rows="4" placeholder="Bio"></textarea>
+                                </div>
+
+
+                                <div class="row mt-4">
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-previous">Indietro</button>
+                                    </div>
+                                    <div class="col-2 offset-8">
+                                        <button type="submit" class="btn btn-rounded btn-success btn-register float-right">Registrati</button>
+                                    </div>
+                                </div>
+
                             </fieldset>
 
                             </form>
