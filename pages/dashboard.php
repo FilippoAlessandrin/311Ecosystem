@@ -141,7 +141,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pages/calendar.php">
+						<a class="nav-link" href="calendar.php">
 							<i class="ti-calendar menu-icon"></i>
 							<span class="menu-title">Prenotazione Aule</span>
 						</a>
