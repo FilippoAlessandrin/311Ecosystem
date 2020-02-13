@@ -21378,4 +21378,8 @@ dl li {
   border-radius: 5px;
 }
 
+form.registration-form fieldset {
+  display: none;
+}
+
 /*# sourceMappingURL=maps/style.css.map */
