@@ -24,7 +24,7 @@ class DBO
     }
     
 }
-class User extends DBO {
+class ability extends DBO {
 		public function __construct(){
 			parent::__construct("skills");
 		}
