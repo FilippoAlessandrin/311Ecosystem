@@ -18,7 +18,7 @@ class DBO {
     }
 
     public function selectAll() {
-        $stmt = $this->db->prepare("select * from ".$this->table."");
+        $stmt = $this->db->prepare("select * from ".$this->table." where toggle='1'" );
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -28,24 +28,15 @@ class DBO {
 
 class Aule extends DBO {
 		public function __construct(){
-			parent::__construct("prenotazione");
+			parent::__construct("aule");
 		}
-		public function insert($title,$start_date,$end_date,$description,$isPublic,$tot_ore,$active,$aulaid,$iduser){
-			$stmt = $this->db->prepare("insert into " .$this->table. "(id_user,id_aula,titolo,descrizione,isPublic,start_date,end_date,tot_ore,active) values(?,?,?,?,?,?,?,?,?)");
-			$stmt->execute([$iduser,$aulaid,$title,$description,$isPublic,$start_date,$end_date,$tot_ore,$active]);
+		public function insert($name,$zona,$capienza){
+			$stmt = $this->db->prepare("insert into " .$this->table. "(nome,zona,capienza) values(?,?,?)");
+			$stmt->execute([$name,$zona,$capienza]);
 	
 			return $stmt->rowCount();
 		}
-		public function getEventsBetween($start_datetimestring,$end_datetimestring,$active,$aulaId){
-			$stmt = $this->db->prepare("select * from ".$this->table." WHERE active ='1' AND start_date >= '$start_datetimestring' AND end_date <= '$end_datetimestring' AND id_aula='$aulaId'");
-			$stmt->execute();
-			return $stmt->fetch(PDO::FETCH_ASSOC);
-		}
-		public function select($eventid){
-			$stmt = $this->db->prepare("select * from ".$this->table." WHERE id='$eventid'");
-			$stmt->execute();
-			return $stmt->fetch(PDO::FETCH_ASSOC);
-		}
+		
 		public function toggle($eventid){
 			$stmt = $this->db->prepare("select * from ".$this->table." WHERE id='$eventid'");
 			$stmt->execute();
@@ -54,7 +45,7 @@ class Aule extends DBO {
 			
 			
 	
-			$toggled=$result['active']==1 ? 0 : 1;
+			$toggled=$result['toggle']==1 ? 0 : 1;
 			$sql = "UPDATE ".$this->table." SET active=".$toggled.", WHERE id=".$eventid."";
 
 			// Prepare statement
@@ -66,7 +57,5 @@ class Aule extends DBO {
 
 
 		}
-		
-		
 	}
 ?>

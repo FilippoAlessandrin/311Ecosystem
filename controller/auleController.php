@@ -2,67 +2,33 @@
     include_once $_SERVER['DOCUMENT_ROOT']."/311Ecosystem/dbo/Aule.php";
     class AuleController{
         public function __construct() {
-            $this->AuleDBO=new Aule();
+            $this->auleDBO = new Aule();
 
         }
         public function insert(){
             if(!isset($_SESSION["permission"])){
                 if(/*$_SESSION["permission"]>=1*/true){
                     if(
-                        isset($_POST["title"]) 
-                        && isset($_POST["start_date"]) 
-                        && isset($_POST["end_date"])
-                        && isset($_POST["aulaid"])
-                        && isset($_POST["userid"])
+                        isset($_POST["nome"]) &&
+                        isset($_POST["capienza"]) 
+                   
+
                     ){
-                        $userid=$_POST["userid"];
-                        $title=$_POST["title"];
-                        $start_date=$_POST["start_date"];
-                        $end_date=$_POST["end_date"];
-                        $aulaId=$_POST["aulaid"];
-                     
+                        $name=$_POST["nome"];
+                        $capienza=$_POST["capienza"];
                        
-                        
-                        $description = isset($_POST['description']) ? $_POST['description'] : null;
-                        $isPublic = isset($_POST['isPublic']) ? $_POST['isPublic'] : 0;
-                       
-                        $datetime=new DateTime();
-                        $start_datetime=$datetime->createFromFormat('d/m/Y H:i',  $start_date);
-                        $end_datetime = $datetime->createFromFormat('d/m/Y H:i',  $end_date);
-                        
-                        if($start_datetime >  $end_datetime){
-                            return json_encode(array("result"=>"1500", "message"=>"Insert Error, end date is earlier than start date"));
-                        }else{
-                            $start_datetimestring = $start_datetime->format('Y/m/d H:i:s');
-                            $end_datetimestring = $end_datetime->format('Y-m-d H:i:s');
-                        }
-                    
-                        
-                        
-                        $diff = $end_datetime->diff($start_datetime);
-                      
-                        $tot_ore=$diff->format("%H:%i");
 
-                        if($tot_ore<=0){
-                            return json_encode(array("result"=>"1500", "message"=>"Insert Error, The diff equals 0"));
-                        }
+                        
+                        $zona = isset($_POST['zona']) ? $_POST['zona'] : null;
+                        
+                        $result=$this->auleDBO->insert($name,$zona,$capienza);
 
-                        $_SESSION["permission"]=2;/*cancellare*/
-                        $active = $_SESSION["permission"]<=2 ? 1 : 0;
-                        $resultconflict=$this->AuleDBO->getEventsBetween($start_datetimestring,$end_datetimestring,$active,$aulaId);
-                        if(!$resultconflict){
-                            $result=$this->AuleDBO->insert($title,$start_datetimestring,$end_datetimestring,$description,$isPublic,$tot_ore,$active,$aulaId,$userid);
-                        }else{
-                            $result=0;
-                        }
-                       
-                        $result>=1 ?  $success=true : $success=false;
-                        if($success){
+                        if($result){
                             return json_encode(array("result"=>"1201", "message"=>"insert completed!"));
                         }else{
                             return json_encode(array("result"=>"1500", "message"=>"Insert Error, evento esiste già"));
                         }
-
+    
                 
                         
                     }else{
@@ -82,10 +48,10 @@
             if(!isset($_SESSION["permission"])){
                 if(/*$_SESSION["permission"]>=1*/true){
                     if(
-                        isset($_POST["eventid"])
+                        isset($_POST["active"])
                     ){
                         $userid="2";
-                        $eventid=$_POST["eventid"];
+                        $eventid=$_POST["active"];
                         $result=$this->AuleDBO->select($eventid);
                         if($result["id_user"]==$userid || $_SESSION["permission"]==1){
                             $result=$this->AuleDBO->toggle($eventid);
@@ -118,7 +84,11 @@
                     return json_encode(array("result"=>"1403", "message"=>"Not logged in"));
                 }
             }
+            public function selectAll(){
+                echo $this->auleDBO->selectAll();
+            }
         }
+       
 
        
 
