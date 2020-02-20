@@ -28,11 +28,11 @@
                 <!-- <h6 class="font-weight-light">Accedi per continuare.</h6> -->
                 <form class="pt-3">
                     <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                        placeholder="E-mail">
+                    <input type="text" class="form-control form-control-lg" name="username"
+                        placeholder="Username">
                     </div>
                     <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
+                    <input type="password" class="form-control form-control-lg" name="password"
                         placeholder="Password">
                     </div>
                     <div class="mt-3">

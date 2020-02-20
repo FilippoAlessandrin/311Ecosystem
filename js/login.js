@@ -6,8 +6,8 @@ function login () {
 
     var http = new XMLHttpRequest();
     var url = '../api/user/login';
-    let username=document.getElementsByName('username');
-    let password=document.getElementsByName('password');
+    let username=document.getElementsByName('username')[0].value;
+    let password=document.getElementsByName('password')[0].value;
     var params = 'username='+username+'&password='+password;
     
     http.open('POST', url, true);
