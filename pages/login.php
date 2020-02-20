@@ -36,8 +36,7 @@
                         placeholder="Password">
                     </div>
                     <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                        href="../index.php">ACCEDI</a>
+                    <a id="login-signin" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">ACCEDI</a>
                     </div>
                     <div class="mt-4 text-center">
                     <!-- <div class="form-check">
@@ -70,6 +69,7 @@
 	<script src="../js/hoverable-collapse.js"></script>
 	<script src="../js/template.js"></script>
 	<script src="../js/todolist.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 
 </html>
