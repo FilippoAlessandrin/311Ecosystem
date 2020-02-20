@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>311Ecosystem | Login</title>
+	<title>311Ecosystem | Sign Up</title>
 	<link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
 	<link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
 	<link rel="stylesheet" href="../css/style.css">
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg" id="registration-password-repeat"
-                                        placeholder="Ripeti la password">
+                                        placeholder="Conferma la password">
                                 </div>
                                 
                                 <div class="text-center mt-4 font-weight-light">
