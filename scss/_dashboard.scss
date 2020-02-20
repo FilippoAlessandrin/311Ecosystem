@@ -1,0 +1,13 @@
+.immagine-progetto {
+    height: 100%;
+    background-image: url(../images/auth/login-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 0 5px 5px 0;
+
+    opacity: .8;
+}
+.card.progetto {
+    box-shadow: 0 0 10px 0px #00000010 !important;
+    border-radius: 5px;
+}

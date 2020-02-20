@@ -1,0 +1,188 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>311Ecosystem | Login</title>
+	<link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="shortcut icon" href="../images/favicon.png" />
+</head>
+<body>
+
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+
+                    <div class="col-lg-6 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <div class="brand-logo">
+                                <img src="../images/logo.svg" alt="logo">
+                            </div>
+
+                            
+                            <form class="pt-3 registration-form">
+                                
+                            <fieldset>
+                            
+                                <div class="form-group">
+                                    <h4>Hey, nuovo di qui? Registrati in pochi step</h4>
+                                    <!-- <h6 class="font-weight-light">1/3</h6> -->
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-username"
+                                        placeholder="Nome utente">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-lg" id="registration-email"
+                                        placeholder="E-mail">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg" id="registration-password"
+                                        placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg" id="registration-password-repeat"
+                                        placeholder="Ripeti la password">
+                                </div>
+                                
+                                <div class="text-center mt-4 font-weight-light">
+                                    Hai già un account? <a href="login.php" class="text-primary">Login</a>
+                                </div>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-2 offset-10">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-next float-right">Avanti</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <h4>Ci siamo quasi! Dicci un po' di te</h4>
+                                    <!-- <h6 class="font-weight-light">2/3</h6> -->
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-nome" placeholder="Nome">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-cognome" placeholder="Cognome">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="registration-data">Data di nascita</label>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <select class="form-control form-control-lg" id="registration-giorno">
+                                                <option value="" disabled selected>Giorno</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <select class="form-control form-control-lg" id="registration-mese">
+                                                <option value="" disabled selected>Mese</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <select class="form-control form-control-lg" id="registration-anno">
+                                                <option value="" disabled selected>Anno</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-previous">Indietro</button>
+                                    </div>
+                                    <div class="col-2 offset-8">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-next float-right">Avanti</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <h4>Di cosa ti occupi?</h4>
+                                    <!-- <h6 class="font-weight-light">3/3</h6> -->
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="registration-professione" placeholder="Professione">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="tel" class="form-control form-control-lg" id="registration-telefono" placeholder="Numero di cellulare">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-6 my-auto">Sei un Freelancer?</label>
+                                        <div class="col-3 my-auto">
+                                            <div class="form-check form-check-dark">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="freelancerRadios" id="registration-freelancersi" value="freelancersi">
+                                                Si
+                                            </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 my-auto">
+                                            <div class="form-check form-check-dark">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="freelancerRadios" id="registration-freelancerno" value="freelancerno" checked>
+                                                No
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="form-control" id="registration-bio" rows="4" placeholder="Bio"></textarea>
+                                </div>
+
+
+                                <div class="row mt-4">
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-rounded btn-outline-dark btn-previous">Indietro</button>
+                                    </div>
+                                    <div class="col-2 offset-8">
+                                        <button type="submit" class="btn btn-rounded btn-success btn-register float-right">Registrati</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+
+
+    <script src="../vendors/base/vendor.bundle.base.js"></script>
+	<script src="../js/off-canvas.js"></script>
+	<script src="../js/hoverable-collapse.js"></script>
+	<script src="../js/template.js"></script>
+	<script src="../js/todolist.js"></script>
+	<script src="../js/form-script.js"></script>
+</body>
+
+</html>
