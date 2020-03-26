@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Prenotazione Aule</title>
+	<link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
+	<link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../images/favicon.png" />
+    <style>
+        #caleandar {
+        margin-top: 40px;
+        }
+
+        .cld-day:hover {
+        cursor: pointer;
+        background-color: rgb(82, 169, 255);
+        color: white;
+        }
+
+        @media only screen and (min-width: 1px) and (max-width: 600px) {
+        .event{ 
+            width: 300px;
+        }
+
+        .formCont {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #formCont1 {
+            margin: 15px;
+        }
+        }
+
+        @media only screen and (min-width: 600px) and (max-width: 1200px) {
+        .event{ 
+            width: 400px;
+        }
+
+        .formCont {
+            display: flex;
+            flex-direction: row;
+        }
+        }
+
+        @media only screen and (min-width: 1200px) {
+        .event{ 
+            width: 600px;
+        }
+
+        .formCont {
+            display: flex;
+            flex-direction: row;
+        }
+        }
+
+        .event {
+        margin: 20px 0px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px #c7c5d85d;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        }
+
+        .eventCont {
+        width: 100%;
+        height: 100%;
+        padding: 1.25rem 1.437rem;
+        }
+
+        #closeEv {
+        float: right;
+        cursor: pointer;
+        font-size: 24px;
+        border: none;
+        outline: none;
+        background: none;
+        color: rgb(50, 50, 50);
+        font-weight: bold;
+        }
+
+        #currentDate {
+        font-size: 20px;
+        font-weight: bold;
+        }
+
+        #formCont1 {
+        flex: 1;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 0;
+        margin-bottom: 15px;
+        }
+
+        #formCont2 {
+        flex: 2;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        }
+
+        .emptySpace {
+        width: 100%;
+        height: 20px;
+        }
+
+        @media only screen and (min-width: 300px) and (max-width: 600px) {
+  .cld-main{ 
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1200px) {
+  .cld-main{ 
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .cld-main{ 
+    width: 600px;
+  }
+}
+
+.cld-main{
+  margin: auto;
+}
+.cld-main a{
+  color: #0080FF;
+}
+.cld-main svg{
+  fill: #0080FF;
+}
+  .cld-datetime{
+    position: relative;
+    width: 66%;
+    min-width: 100px;
+    max-width: 300px;
+    margin: auto;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  .cld-datetime .today{
+    position: relative;
+    float: left;
+    width: calc(100% - 40px);
+    margin: auto;
+    text-align: center;
+    font-size: 22px;
+  }
+  .cld-nav{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+  }
+  .cld-nav:hover{
+    cursor: pointer;
+  }
+  .cld-nav:hover svg{
+      fill: #005EFF;
+  }
+  .cld-rwd{
+    float: left;
+  }
+  .cld-fwd{
+    float: right;
+  }
+  
+.cld-labels, .cld-days{
+  padding-left: 0;
+}
+  .cld-label, .cld-day{
+    box-sizing: border-box;
+    display: inline-block;
+    width: 14.28%;
+    text-align: center;
+  }
+  .cld-day{
+    border: 1px solid #eee;
+  }
+  .cld-day.today .cld-number{
+    background: #0080FF;
+    color: #fff;
+  }
+  .cld-day.disableDay{
+    opacity: 0.5;
+  }
+  .cld-day.nextMonth, .cld-day.prevMonth{
+    opacity: 0.33;
+  }
+    .cld-number{
+      position: relative;
+      margin: 0;
+      padding: 10px;
+    }
+      .cld-title{
+        position: absolute;
+        z-index: 5;
+        display: none;
+        top: 35px;
+        left: 0;
+        padding: 5px 10px;
+        background: #fff;
+        white-space: nowrap;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 12px;
+      }
+      .cld-number:hover .cld-title{
+        display: block;
+      }
+      .cld-title::before{
+        content: '';
+        position: absolute;
+        top: -7.5px; left: 10px;
+        width: 0;
+        height: 0;
+        border-left: 7.5px solid transparent;
+        border-right: 7.5px solid transparent;
+
+        border-bottom: 7.5px solid #ccc;
+      }
+      .cld-number.eventday{
+        font-weight: bold;
+        color: #0080FF;
+      }
+      .cld-number.eventday:hover{
+        cursor: pointer;
+        background: #eee;
+      }
+      .today .cld-number.eventday:hover{
+        background: #005EFF;
+      }
+
+
+    </style>
+</head>
+<body>
+	<div class="container-scroller">
+
+		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+			<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+				<a class="navbar-brand brand-logo mr-5" href="dashboard.html"><img src="../images/logo.png" class="mr-2" alt="logo"/></a>
+				<a class="navbar-brand brand-logo-mini" href="dashboard.html"><img src="../images/logo-mini.png" alt="logo"/></a>
+			</div>
+			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+				<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+					<span class="ti-view-list"></span>
+				</button>
+				<ul class="navbar-nav mr-lg-2">
+					<li class="nav-item nav-search d-none d-lg-block">
+						<div class="input-group">
+							<div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+								<span class="input-group-text" id="search">
+									<i class="ti-search"></i>
+								</span>
+							</div>
+							<input type="text" class="form-control" id="navbar-search-input" placeholder="Ricerca" aria-label="search" aria-describedby="search">
+						</div>
+					</li>
+				</ul>
+				<ul class="navbar-nav navbar-nav-right">
+						<li class="nav-item dropdown">
+						<a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+							<i class="ti-bell mx-0"></i>
+							<span class="count"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
+							<p class="mb-0 font-weight-normal float-left dropdown-header">Notifiche</p>
+							<a class="dropdown-item">
+								<div class="item-thumbnail">
+									<div class="item-icon bg-success">
+										<i class="ti-info-alt mx-0"></i>
+									</div>
+								</div>
+								<div class="item-content">
+									<h6 class="font-weight-normal">Benvenuto</h6>
+									<p class="font-weight-light small-text mb-0 text-muted">
+										Inizia da qui, vai alla guida
+									</p>
+								</div>
+							</a>
+							<a class="dropdown-item">
+								<div class="item-thumbnail">
+									<div class="item-icon bg-warning">
+										<i class="ti-settings mx-0"></i>
+									</div>
+								</div>
+								<div class="item-content">
+									<h6 class="font-weight-normal">Impostazioni account</h6>
+									<p class="font-weight-light small-text mb-0 text-muted">
+										Gestisci il tuo account
+									</p>
+								</div>
+							</a>
+							<a class="dropdown-item">
+								<div class="item-thumbnail">
+									<div class="item-icon bg-info">
+										<i class="ti-user mx-0"></i>
+									</div>
+								</div>
+								<div class="item-content">
+									<h6 class="font-weight-normal">Nuovi collegamenti</h6>
+									<p class="font-weight-light small-text mb-0 text-muted">
+										Trova nuovi colleghi
+									</p>
+								</div>
+							</a>
+						</div>
+					</li>
+					<li class="nav-item nav-profile dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+							<img src="../images/faces/propic-small.jpg" alt="profile"/>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+							<a class="dropdown-item">
+								<i class="ti-settings text-primary"></i>
+								Impostazioni
+							</a>
+							<a class="dropdown-item" href="login.html">
+								<i class="ti-power-off text-primary"></i>
+								Logout
+							</a>
+						</div>
+					</li>
+				</ul>
+				<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+					<span class="ti-view-list"></span>
+				</button>
+			</div>
+		</nav>
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:partials/_sidebar.html -->
+			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<ul class="nav">
+					
+					<li class="nav-item">
+						<a class="nav-link" href="dashboard.html">
+							<i class="ti-home menu-icon"></i>
+							<span class="menu-title">Homepage</span>
+						</a>
+					</li>
+
+					
+					<li class="nav-item">
+						<a class="nav-link" href="profile.html">
+							<i class="ti-user menu-icon"></i>
+							<span class="menu-title">Profilo</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="ti-agenda menu-icon"></i>
+							<span class="menu-title">Progetti</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="calendario.html">
+							<i class="ti-calendar menu-icon"></i>
+							<span class="menu-title">Prenotazione Aule</span>
+						</a>
+					</li>
+					
+				</ul>
+			</nav>
+			<!-- partial -->
+			<div class="main-panel">
+				<div class="content-wrapper">
+
+					<div class="row">
+						<div class="col-md-12 grid-margin stretch-card">
+							<div class="card position-relative">
+								<div class="card-body">
+                                    <div class="row">
+
+                                        <div class="col-lg-12 col-xl-12">
+                                            <div id="caleandar">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-12 col-xl-12">
+                                        
+                                            <div class="event" id="eventDetail">
+                                              <div class="eventCont">
+                                                      <p><span id="currentDate"></span><span id="closeEv">×</span></p>
+                                                <div style="text-align: center;">
+                                                  <p><h5>Prenotazione aule 311</h5></p>
+                                                </div>
+                                                <div class="formCont">
+                                                  <div id="formCont1">
+                                                    <select id="selAule">
+                                                      <option value="">- scegli l'aula -</option>
+                                                      <option value="">Aula 1</option>
+                                                      <option value="">Aula 2</option>
+                                                      <option value="">Aula 3</option>
+                                                      <option value="">Aula 4</option>
+                                                    </select>
+                                                  </div>
+                                                  <div id="formCont2">
+                                                    <table class="table table-bordered table-hover" style="margin-bottom: 0px">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>Ore</th>
+                                                          <th>Utente</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody id="tbody">
+                                                        <tr>
+                                                          <td>8.00 - 9.00</td>
+                                                          <td><button type="button" class="btn btn-outline-primary btn-prenotati">Prenotati</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>9.00 - 10.00</td>
+                                                          <td>Utente 1</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>10.00 - 11.00</td>
+                                                          <td>Utente 1</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>11.00 - 12.00</td>
+                                                          <td><button type="button" class="btn btn-outline-primary btn-prenotati">Prenotati</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>12.00 - 13.00</td>
+                                                          <td><button type="button" class="btn btn-outline-primary btn-prenotati">Prenotati</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>13.00 - 14.00</td>
+                                                          <td>Utente 2</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>14.00 - 15.00</td>
+                                                          <td>Utente 2</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>15.00 - 16.00</td>
+                                                          <td>Utente 2</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>16.00 - 17.00</td>
+                                                          <td>Utente 3</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>17.00 - 18.00</td>
+                                                          <td>Utente 3</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>18.00 - 19.00</td>
+                                                          <td><button type="button" class="btn btn-outline-primary btn-prenotati">Prenotati</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        
+                                            <div style="text-align: center; margin: auto; padding: 20px 0">
+                                              <button type="button" class="btn btn-outline-success">Report mensile</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+								</div>
+							</div>  
+						</div>
+					</div>
+
+				</div>
+
+				<footer class="footer">
+					<div class="d-sm-flex justify-content-center justify-content-sm-between">
+						<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Team Alpha © 2020 | 311Ecosystem</span>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+
+	<script src="../vendors/base/vendor.bundle.base.js"></script>
+	<script src="../vendors/chart.js/Chart.min.js"></script>
+	<script src="../js/off-canvas.js"></script>
+	<script src="../js/hoverable-collapse.js"></script>
+	<script src="../js/template.js"></script>
+	<script src="../js/todolist.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/caleandar.js"></script>
+    <script src="../js/maincalendar.js"></script>
+</body>
+
+</html>
+
