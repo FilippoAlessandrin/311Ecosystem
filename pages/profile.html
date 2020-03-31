@@ -9,6 +9,12 @@
 	<link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="shortcut icon" href="../images/favicon.png" />
+	<style>
+		.btn-close, #add-competenza {
+			cursor: pointer;
+		}
+		
+	</style>
 </head>
 <body>
 	<div class="container-scroller">
@@ -189,7 +195,7 @@
 									<div class="row">
 										<div class="col-md-12 col-xl-3 d-flex flex-column justify-content-center">
 											<div class="ml-xl-4">
-												<h3 class="font-weight-light mb-xl-4">7 Competenze totali</h3>
+												<h3 class="font-weight-light mb-xl-4"><span id="num-comp">5</span> Competenze totali</h3>
 											</div>  
 										</div>
 
@@ -197,34 +203,53 @@
 											<div class="row">
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table class="table">
+                                                    <table class="table" id="tabella-comp">
                                                     <thead>
                                                         <tr>
                                                             <th>Competenza</th>
-                                                            <th>Caregoria</th>
+                                                            <th>Categoria</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
                                                             <td>PHP</td>
                                                             <td><label class="badge badge-danger">Back-end</label></td>
+                                                            <td><i class="ti-close btn-close"></i></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>HTML</td>
+															<td>HTML</td>
                                                             <td><label class="badge badge-warning">Front-end</label></td>
+															<td><i class="ti-close btn-close"></i></td>
                                                         </tr>
+														<tr>
+															<td>Internet Of Things Expert</td>
+															<td><label class="badge badge-info">IOT</label></td>
+															<td><i class="ti-close btn-close"></i></td>
+														</tr>
                                                         <tr>
-                                                            <td>Javascript</td>
-                                                            <td><label class="badge badge-info">IOT</label></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Peter</td>
-                                                            <td><label class="badge badge-success">Completed</label></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Dave</td>
-                                                            <td><label class="badge badge-warning">In progress</label></td>
-                                                        </tr>
+															<td>SEO Expert</td>
+                                                            <td><label class="badge badge-success">SEO</label></td>
+															<td><i class="ti-close btn-close"></i></td>
+														</tr>
+														<tr>
+															<td>Javascript</td>
+															<td><label class="badge badge-warning">Front-end</label></td>
+															<td><i class="ti-close btn-close"></i></td>
+														</tr>
+														<tr class="last-tr">
+															<td id="competenza"> <input type="text" class="form-control form-control-sm"> </td>
+															<td id="cat-competenza">
+																<select class="form-control-sm">
+																	<option>Back-end</option>
+																	<option>Front-end</option>
+																	<option>IOT</option>
+																	<option>UI</option>
+																	<option>SEO</option>
+																	<option>UX</option>
+																</select>
+															</td>
+															<td id="add-competenza"><i class="ti-plus"></i></td>
+														</tr>
                                                     </tbody>
                                                     </table>
                                                 </div>
@@ -255,6 +280,7 @@
 	<script src="../js/template.js"></script>
 	<script src="../js/todolist.js"></script>
 	<script src="../js/dashboard.js"></script>
+	<script src="../js/profile.js"></script>
 </body>
 
 </html>
